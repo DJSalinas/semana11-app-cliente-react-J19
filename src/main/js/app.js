@@ -27,7 +27,7 @@ class App extends React.Component {
 class InstrumentoList extends React.Component{
 	render() {
 		const instrumentos = this.props.instrumentos.map(instrumento =>
-			<Instrumento key={instrumento._links.self.href} instrumentos={instrumento}/>
+			<Instrumento key={instrumento._links.self.href} instrumento={instrumento}/>
 		);
 		return (
 			<table>
