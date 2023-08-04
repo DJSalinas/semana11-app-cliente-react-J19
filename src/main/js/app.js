@@ -9,7 +9,7 @@ class App extends React.Component {
 		this.state = {employees: []};
 	}
 	componentDidMount() {
-		client({method: 'GET', path: '/api/employees'}).done(response => {
+		client({method: 'GET', path: '/api/emplo  yees'}).done(response => {
 			this.setState({employees: response.entity._embedded.employees});
 		});
 	}
