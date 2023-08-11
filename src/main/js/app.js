@@ -6,11 +6,16 @@ const client = require('./client');
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {instrumentos: []};
+		this.state = {instrumentos: [], musicos: []};
 	}
 	componentDidMount() {
+
 		client({method: 'GET', path: '/api/instrumentos'}).done(response => {
 			this.setState({instrumentos: response.entity._embedded.instrumentos});
+		});
+
+		client({method: 'GET', path: '/api/musicos'}).done(response => {
+			this.setState({musicos: response.entity._embedded.musicos});
 		});
 	}
 	render() {
@@ -18,6 +23,9 @@ class App extends React.Component {
 			<>
 				<h2>Lista de Intrumentos</h2>
 				<InstrumentoList instrumentos={this.state.instrumentos}/>
+				<hr/>
+				<h2>Lista de Musicos</h2>
+				<MusicoList musicos={this.state.musicos}/>
 			</>
 			
 		)
@@ -44,6 +52,24 @@ class InstrumentoList extends React.Component{
 	}
 }
 
+class MusicoList extends React.Component{
+	render() {
+		const musicos = this.props.musicos.map(musico =>
+			<Musico key={musico._links.self.href} musico={musico}/>
+		);
+		return (
+			<table>
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+					</tr>
+					{musicos}
+				</tbody>
+			</table>
+		)
+	}
+}
+
 class Instrumento extends React.Component{
 	render() {
 		return (
@@ -51,6 +77,16 @@ class Instrumento extends React.Component{
 				<td>{this.props.instrumento.nombre}</td>
 				<td>{this.props.instrumento.categoria}</td>
 				<td>{this.props.instrumento.descripcion}</td>
+			</tr>
+		)
+	}
+}
+
+class Musico extends React.Component{
+	render() {
+		return (
+			<tr>
+				<td>{this.props.musico.nombre}</td>
 			</tr>
 		)
 	}

@@ -1,8 +1,16 @@
-@server = https://bookish-guide-g9wwp4wg594297qq-8080.app.github.dev
+@server = https://fluffy-space-enigma-7q44xv4gp6rfw69r-8080.app.github.dev
 ###
 GET {{server}}/api/instrumentos 
 ###
 POST {{server}}/api/instrumentos
 Content-Type: application/json
 
-{"firstName": "Mi", "lastName": "Aplicación", "description": "React"}
+{"nombre": "Quena", "categoria": "Viento", "descripcion": "de madera resistente"}
+
+###
+GET {{server}}/api/musicos 
+###
+POST {{server}}/api/musicos
+Content-Type: application/json
+
+{"nombre": "Quispe J."}
